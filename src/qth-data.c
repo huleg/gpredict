@@ -741,12 +741,6 @@ void qth_validate(qth_t * qth)
                     _("%s: QTH data had bogus lon %f"), __func__, qth->lon);
         qth->lon = 0.0;
     }
-    if (!isnormal(qth->alt) && (qth->alt != 0))
-    {
-        sat_log_log(SAT_LOG_LEVEL_ERROR,
-                    _("%s: QTH data had bogus alt %f"), __func__, qth->alt);
-        qth->alt = 0.0;
-    }
 
     /* check that qth->lat and qth->lon are in a reasonable range 
        and if not wrap them back */
@@ -790,7 +784,6 @@ void qth_validate(qth_t * qth)
         {
             qth->lon -= 360.0;
         }
-
     }
 }
 
