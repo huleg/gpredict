@@ -83,12 +83,14 @@ static void cancel_wizard(GtkAssistant * assistant, wizard_t * wizard)
 static void add_welcome_page(wizard_t * wizard)
 {
 
-#define text N_("<span weight='bold'>" \
-                "I am gpredict version " VERSION "</span>\n\n" \
-                "Before I can track satellites for you I need to know where "\
-                "you are and which satellites you are interested in.\n\n"\
-                "On the following pages I will guide through this "\
-                "first time setup. Ready to go?")
+#define text N_("Before we can track satellites we need to know your " \
+                "approximate location and which satellites you are " \
+                "interested in.\n" \
+                "\n" \
+                "This wizard will guide you through the initial setup where " \
+                "after you will be ready to track satellites.\n" \
+                "\n" \
+                "Click <b>Forward</b> to begin.")
 
     int             idx;
     GtkWidget      *page;       /* the current wizard page */
@@ -109,7 +111,7 @@ static void add_welcome_page(wizard_t * wizard)
     gtk_assistant_set_page_type(GTK_ASSISTANT(wizard->widget), page,
                                 GTK_ASSISTANT_PAGE_INTRO);
     gtk_assistant_set_page_title(GTK_ASSISTANT(wizard->widget), page,
-                                 _("Hi there!"));
+                                 _("Welcome to Gpredict " VERSION));
     gtk_assistant_set_page_complete(GTK_ASSISTANT(wizard->widget), page, TRUE);
 }
 
