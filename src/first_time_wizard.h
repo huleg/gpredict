@@ -27,6 +27,6 @@
 #ifndef FIRST_TIME_WIZARD_H
 #define FIRST_TIME_WIZARD_H 1
 
-int             first_time_wizard_run(int status);
+int             first_time_wizard_run(unsigned int status);
 
 #endif

@@ -38,13 +38,13 @@
 
 
 /* private function prototypes */
-static int      first_time_check_cfg(void);
-static int      first_time_check_qth(void);
-static int      first_time_check_mod(void);
-static int      first_time_check_sat(void);
-static int      first_time_check_cache(void);
-static int      first_time_check_hwconf(void);
-static int      first_time_check_trsp(void);
+static unsigned int first_time_check_cfg(void);
+static unsigned int first_time_check_qth(void);
+static unsigned int first_time_check_mod(void);
+static unsigned int first_time_check_sat(void);
+static unsigned int first_time_check_cache(void);
+static unsigned int first_time_check_hwconf(void);
+static unsigned int first_time_check_trsp(void);
 
 /* debug shortcut */
 #define FTC_DEBUG(f, r) sat_log_log(SAT_LOG_LEVEL_DEBUG, _("%s: %d"), f, r)
@@ -86,9 +86,9 @@ static int      first_time_check_trsp(void);
  * process.
  *
  */
-int first_time_check_run()
+unsigned int first_time_check_run()
 {
-    int             error = 0;
+    unsigned int    error = 0;
 
     error |= first_time_check_cfg();
     error |= first_time_check_qth();
@@ -107,7 +107,7 @@ int first_time_check_run()
  * @retval  #FTC_STATUS_NO_CFG  USER_CONF_DIR/gpredict.cfg was not found.
  *
  */
-static int first_time_check_cfg()
+static unsigned int first_time_check_cfg()
 {
     gchar          *dir, *cfg;
     gboolean        foundcfg = FALSE;
@@ -134,7 +134,7 @@ static int first_time_check_cfg()
  * @retval #FTC_STATUS_NO_QTH  No .qth file was found.
  *
  */
-static int first_time_check_qth()
+static unsigned int first_time_check_qth()
 {
     gchar          *dirname;
     const gchar    *datafile;
@@ -173,7 +173,7 @@ static int first_time_check_qth()
  * @retval  0   At least one .mod file was found.
  * @retval  #FTC_STATUS_NO_QTH  No .mod file was found.
  */
-static int first_time_check_mod()
+static unsigned int first_time_check_mod()
 {
     gchar          *dirname;
     const gchar    *datafile;
@@ -214,7 +214,7 @@ static int first_time_check_mod()
  * @retval  #FTC_STATUS_NO_SAT  No .sat file was found.
  * @retval  #FTC_STATUS_NO_CAT  No .cat file was found.
  */
-static int first_time_check_sat()
+static unsigned int first_time_check_sat()
 {
     gchar          *dirname;
     const gchar    *datafile;
@@ -256,7 +256,7 @@ static int first_time_check_sat()
  * @retval  0   Directory found.
  * @retval  #FTC_STATUS_NO_CACHE  Directory not found.
  */
-static int first_time_check_cache()
+static unsigned int first_time_check_cache()
 {
     gchar          *buff, *dir;
     gboolean        foundcache = FALSE;
@@ -279,7 +279,7 @@ static int first_time_check_cache()
  * @retval  0   Directory found.
  * @retval  #FTC_STATUS_NO_HWCONF  Directory not found.
  */
-static int first_time_check_hwconf()
+static unsigned int first_time_check_hwconf()
 {
     gchar          *confdir;
     gboolean        foundconf = FALSE;
@@ -300,7 +300,7 @@ static int first_time_check_hwconf()
  * @retval  0   Directory found.
  * @retval  #FTC_STATUS_NO_TRSP  Directory not found.
  */
-static int first_time_check_trsp()
+static unsigned int first_time_check_trsp()
 {
     gchar          *confdir;
     gboolean        foundconf = FALSE;

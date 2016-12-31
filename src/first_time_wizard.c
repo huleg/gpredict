@@ -38,7 +38,7 @@
 
 /** Convenience struct with all wizard data. */
 typedef struct {
-    int             ftc_status;
+    unsigned int    ftc_status;
     int             retcode;
     GtkWidget      *widget;
 } wizard_t;
@@ -241,11 +241,11 @@ static void add_final_page(wizard_t * wizard)
 
 /**
  * Main entry point for first time configuration wizard.
- * @param status  The status bitfield returned by #first_time_check_run()
+ * @param cfg_status  The status bitfield returned by #first_time_check_run()
  * @retval     0  The configuration was successfull.
  * @retval    -1  The configuration was cancelled.
  */
-int first_time_wizard_run(int status)
+int first_time_wizard_run(unsigned int cfg_status)
 {
     int             retcode;
     wizard_t       *wizard = g_try_malloc(sizeof(wizard));
@@ -253,15 +253,15 @@ int first_time_wizard_run(int status)
     if (wizard == NULL)
         return -1;
 
-    wizard->ftc_status = status;
+    wizard->ftc_status = cfg_status;
     wizard->widget = gtk_assistant_new();
 
     add_welcome_page(wizard);
 
-    if (status & FTC_STATUS_NO_QTH)
+    if (cfg_status & FTC_STATUS_NO_QTH)
         add_qth_page(wizard);
 
-    if (status & FTC_STATUS_NO_SAT)
+    if (cfg_status & FTC_STATUS_NO_SAT)
         add_satellite_page(wizard);
 
     add_progress_page(wizard);

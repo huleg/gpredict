@@ -40,6 +40,6 @@ enum ftc_status {
     FTC_STATUS_NO_TRSP = 1 << 8,        /*!< No trsp directory. */
 };
 
-int             first_time_check_run(void);
+unsigned int    first_time_check_run(void);
 
 #endif

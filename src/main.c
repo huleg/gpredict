@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
 {
     GError         *err = NULL;
     GOptionContext *context;
-    int             status;
+    unsigned int    config_status;
 
 
 #ifdef G_OS_WIN32
@@ -152,16 +152,16 @@ int main(int argc, char *argv[])
         clean_trsp();
 
     /* check that user settings are ok */
-    status = first_time_check_run();
-    if (status)
+    config_status = first_time_check_run();
+    if (config_status != 0)
     {
         sat_log_log(SAT_LOG_LEVEL_WARN,
                     _("%s: User configuration is incomplete (code: %X)"),
-                    __func__, status);
+                    __func__, config_status);
         sat_log_log(SAT_LOG_LEVEL_WARN,
                     _("%s: Launching configuration wizard"), __func__);
 
-        if (first_time_wizard_run(status))
+        if (first_time_wizard_run(config_status))
         {
             sat_log_log(SAT_LOG_LEVEL_ERROR,
                         _("%s: User configuration still incomplete! "
