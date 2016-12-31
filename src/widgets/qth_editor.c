@@ -33,6 +33,37 @@
 #include "qth_editor.h"
 #include "sat-log.h"
 
+struct _qth_editor
+{
+    GtkVBox         vbox;
+
+    /* active widgets */
+    GtkWidget      *name_entry;
+    GtkWidget      *qra_entry;
+    GtkWidget      *lat_spin;
+    GtkWidget      *lon_spin;
+    GtkWidget      *alt_spin;
+    GtkWidget      *ns;             /* North / south selector */
+    GtkWidget      *ew;             /* East / west selector */
+
+    /* signal IDs */
+    gulong          qra_sigid;
+    gulong          lon_sigid;
+    gulong          lat_sigid;
+    gulong          ns_sigid;
+    gulong          ew_sigid;
+
+    void          (* update) (GtkWidget *widget);
+};
+
+struct _QthEditorClass
+{
+    GtkVBoxClass       parent_class;
+
+    /* changed signal */
+    void (* changed)  (QthEditor * editor);
+};
+
 static void     name_changed(GtkWidget * widget, QthEditor * editor);
 static void     latlon_changed(GtkWidget * widget, QthEditor * editor);
 static void     qra_changed(GtkEntry * entry, QthEditor * editor);
